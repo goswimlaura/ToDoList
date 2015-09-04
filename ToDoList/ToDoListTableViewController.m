@@ -13,6 +13,8 @@
 
 @interface ToDoListTableViewController ()
 
+// I like that you have already started putting items in the private interface that
+// are not meant to be seen by outside classes.
 @property NSMutableArray *toDoItems;
 
 @end
@@ -35,24 +37,33 @@
     
 }
 
-- (IBAction)unwindToList:(UIStoryboardSegue *)segue {
+- (IBAction)unwindToList:(UIStoryboardSegue *)segue
+{
     
-    //LAURA retrieve the source view controller you're unwinding from, AddToDoListController
-    AddToDoItemViewController *source = [segue sourceViewController];
+}
+
+// this pragma statement places an entry in the dropdown list of methods
+#pragma mark - AddToDoItemDelegate
+// Normally I would place delegate methods at the end of the file
+- (void) didFinishCreatingToDoItem:(AddToDoItemViewController *)controller item:(ToDoItem *)newItem
+{
+    // We can compare the controller passed in case we have more than one controller doing something, but we don't
+    // so I will do nothing but an assert.
+    // Sometimes you can be too agressive with asserts; you start adding them then find out that in some cases
+    // it is valid to get nil (or whatever the assert it checking), but when you hit an Assert that you later determine
+    // is not necessary, you tend to ensure that you check parameters and add error checking.
+    NSParameterAssert(controller);
     
-    //LAURA retrieve the value of hte controllers toDoItem property
-    ToDoItem *item = source.toDoItem;
-    
-    //LAURA check to see if the item exists (hit the save button) if not (user hit the cancel button)
-    if (item != nil){
+    // Do we really think that we will be called with a nil newItem - if we are then I would call that a bug in the controller
+    // that called this method.
+    NSParameterAssert(newItem);
+    if (newItem != nil){
         //LAURA add the new item to the array
-        [self.toDoItems addObject:item];
-        
+        [self.toDoItems addObject:newItem];
+
         //LAURA reload the data in your table
         [self.tableView reloadData];
     }
-    
-    
 }
 
 - (void)viewDidLoad {
@@ -70,11 +81,26 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
+- (IBAction)onAddToDoItem:(id)sender
+{
+    AddToDoItemViewController *newView = [self.storyboard instantiateViewControllerWithIdentifier:@"AddTodoItem"];
+    NSAssert(newView != nil, @"Failed to create AddToDoItemViewController");
+    // Navigation controllers are convenient, but there are other ways; this won't work correctly as is because
+    // the AddToDoItemViewController expects to be pushed, just food for thought is all.
+    // [self presentViewController:newView animated:YES completion:nil];
+    
+    // I have not really used storyboard, I read that you should just use "performSegueWithIdentifer", but again, you need
+    // a way to create the controller so that you can add a delegate.  A better way is to figure out how to overide the init
+    // in the new controller so you can pass the delegate in an init method....
+    newView.delegate = self;
+    [self.navigationController pushViewController:newView animated:YES];
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
 
 #pragma mark - Table view data source
 

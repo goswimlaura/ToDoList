@@ -7,8 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+// Because I have declared a delegate, I have to have the ToDoListTableViewController declare that we will implement the delegate.
+#import "AddToDoItemViewController.h"
 
-@interface ToDoListTableViewController : UITableViewController
+@interface ToDoListTableViewController : UITableViewController <AddToDoItemDelegate>
 
     - (IBAction)unwindToList:(UIStoryboardSegue *)segue;
 
