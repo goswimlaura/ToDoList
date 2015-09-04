@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8173.3" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="sHU-rA-sD0">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8187.4" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="sHU-rA-sD0">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8142"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8151.3"/>
     </dependencies>
     <scenes>
         <!--To-Do List-->
@@ -41,7 +40,7 @@
                     <navigationItem key="navigationItem" title="To-Do List" id="7fq-2v-XHl">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="nfX-IU-q2c">
                             <connections>
-                                <segue destination="4u6-2Q-zsK" kind="presentation" id="5X7-o9-vDQ"/>
+                                <action selector="onAddToDoItem:" destination="3hi-Yf-HS2" id="hnw-Tc-H65"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -49,55 +48,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WkM-fY-vc5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="399" y="297"/>
-        </scene>
-        <!--Add To-Do Item-->
-        <scene sceneID="tne-QT-ifu">
-            <objects>
-                <viewController id="BYZ-38-t0r" customClass="AddToDoItemViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
-                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="New to-do items" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="i13-ZU-VT6">
-                                <rect key="frame" x="20" y="285" width="560" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="i13-ZU-VT6" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="7Xp-bN-M9s"/>
-                            <constraint firstItem="i13-ZU-VT6" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="IR6-ZI-PCc"/>
-                            <constraint firstItem="i13-ZU-VT6" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="Mhi-gb-mzi"/>
-                            <constraint firstItem="i13-ZU-VT6" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="nlE-JA-NNt"/>
-                            <constraint firstItem="i13-ZU-VT6" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="yfF-vH-DQA"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" title="Add To-Do Item" id="hFj-AX-JwH">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="vgh-vz-dX7">
-                            <connections>
-                                <segue destination="gkJ-Xb-fct" kind="unwind" unwindAction="unwindToList:" id="fKk-X1-RIp"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="ctC-sL-Krt">
-                            <connections>
-                                <segue destination="gkJ-Xb-fct" kind="unwind" unwindAction="unwindToList:" id="b22-Es-EE3"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                    <connections>
-                        <outlet property="saveButton" destination="ctC-sL-Krt" id="UuA-U2-GO3"/>
-                        <outlet property="textField" destination="i13-ZU-VT6" id="3Yg-m4-Q9Y"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
-                <exit id="gkJ-Xb-fct" userLabel="Exit" sceneMemberID="exit"/>
-            </objects>
-            <point key="canvasLocation" x="1912" y="289"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="ayV-Up-ljl">
@@ -128,12 +78,22 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="U0U-4S-FMP"/>
+                        <segue destination="35w-OF-1AX" kind="relationship" relationship="rootViewController" id="7d9-dP-JB7"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="y4e-Lo-Cp6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1100" y="289"/>
+        </scene>
+        <!--AddTodoItem-->
+        <scene sceneID="v1e-fh-3iC">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="AddTodoItem" storyboardName="ToDoAdd" referencedIdentifier="AddTodoItem" id="35w-OF-1AX" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="o3n-OQ-ekS"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eEB-VL-eLG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1849" y="289"/>
         </scene>
     </scenes>
 </document>
